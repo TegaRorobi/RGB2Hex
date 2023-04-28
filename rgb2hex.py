@@ -131,7 +131,7 @@ class Converter(ctk.CTk):
         for value in rgb_vals:
             hex_str += (self.hex_dict[math.floor(int(value)/16)] + self.hex_dict[int(value)%16])
         self.solution_textbox.delete(0.0, 'end')
-        self.solution_textbox.insert('0.0', '   '+f"R({rgb_vals[0]}) G({rgb_vals[1]}) B({rgb_vals[2]}) -> #{hex_str}(hex)")
+        self.solution_textbox.insert('0.0', '  '+f"R({rgb_vals[0]}) G({rgb_vals[1]}) B({rgb_vals[2]}) -> #{hex_str}(hex)")
     
     def get_rgb(self):
         rgb_lst = []
@@ -139,7 +139,7 @@ class Converter(ctk.CTk):
         for value in [hex_val[x:x+2] for x in range(0, 6, 2)]:
             rgb_lst.append((16*self.rgb_dict[value[0]]) + (self.rgb_dict[value[1]]))
         self.solution_textbox.delete(0.0, 'end')
-        self.solution_textbox.insert('0.0', '   '+f"#{hex_val}(hex) -> R({rgb_lst[0]}) G({rgb_lst[1]}) B({rgb_lst[2]})")
+        self.solution_textbox.insert('0.0', '  '+f"#{hex_val}(hex) -> R({rgb_lst[0]}) G({rgb_lst[1]}) B({rgb_lst[2]})")
 
     def set_appearance_mode(self, mode:str):
         ctk.set_appearance_mode(mode)
