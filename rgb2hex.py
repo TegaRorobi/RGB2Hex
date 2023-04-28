@@ -35,7 +35,7 @@ class Converter(ctk.CTk):
         # configure some window properties
         self.title('Custom Tkinter Converter by Tega Rorobi')
         self.geometry('700x400')
-        # self.resizable(0,0)
+        self.resizable(0,0)
         self.grid_columnconfigure (1, weight=1)
         self.grid_rowconfigure    (0, weight=1)
 
