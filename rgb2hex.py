@@ -51,14 +51,10 @@ class Converter(ctk.CTk):
 
 
 
-        # creating a main frame so I don't pack directly to self 
-        # (just in case I want to add something like a sidebar in the future)
+        # the sidebar
         self.sidebar = ctk.CTkFrame(master=self, width=140)
         self.sidebar.grid(row=0, column=0, padx=(0, 0), pady=0, sticky='ns')
         self.sidebar.grid_rowconfigure(2, weight=1)
-        self.mainframe = ctk.CTkFrame(master=self)
-        self.mainframe.grid(row=0, column=1, sticky='nsew')
-
 
 
         # create some widgets that go into the sidebar
@@ -79,6 +75,13 @@ class Converter(ctk.CTk):
 
 
 
+
+
+        # the mainframe
+        self.mainframe = ctk.CTkFrame(master=self)
+        self.mainframe.grid(row=0, column=1, sticky='nsew')
+
+
         # create some frames that go into the mainframe
         self.frame1 = ctk.CTkFrame(master=self.mainframe)
         self.frame1.pack(pady=(1, 6), padx=(0, 12), fill='both', expand=True)
@@ -87,13 +90,13 @@ class Converter(ctk.CTk):
 
 
 
+        #### FRAME 1 ####
 
-        # configure the rows and columns for the frames in the mainframe
+
+        # configuring the rows and columns for the frames in the mainframe
         self.frame1.grid_rowconfigure(5, weight=1)
         self.frame1.grid_columnconfigure(2, weight=1)
         self.frame2.grid_columnconfigure((0, 1), weight=1)
-
-
 
 
         # create the widgets in frame1 of the mainframe
@@ -105,8 +108,6 @@ class Converter(ctk.CTk):
         self.hex_entry = ctk.CTkEntry(master=self.frame1, width=180, placeholder_text='Hex ex. #D6FF29', font=('Fira Code', 15))
 
 
-        
-
         # grid the widgets onto the screen
         self.title.grid              (row=0, column=0, pady=(15, 25),    sticky='nsew', columnspan=2)
         self.rgb_entry.grid          (row=1, column=0, padx=40, pady=30, sticky='nsew')
@@ -117,6 +118,11 @@ class Converter(ctk.CTk):
 
 
 
+
+
+
+
+        ##### FRAME 2 ####
 
         # add a little footer in frame2
         self.footer = ctk.CTkLabel(master=self.frame2, text="Made with 🐍🐍", font=('', 18))
