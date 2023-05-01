@@ -10,6 +10,7 @@ last_modidified:
 import sys, math, argparse
 import customtkinter as ctk
 from PIL import Image
+from CTkMessagebox import CTkMessagebox
 
 
 
@@ -35,7 +36,7 @@ class Converter(ctk.CTk):
         # configure some window properties
         self.title('Custom Tkinter Converter by Tega Rorobi')
         self.geometry('700x400')
-        self.resizable(0,0)
+        # self.resizable(0,0)
         self.grid_columnconfigure (1, weight=1)
         self.grid_rowconfigure    (0, weight=1)
 
@@ -80,13 +81,18 @@ class Converter(ctk.CTk):
         # the mainframe
         self.mainframe = ctk.CTkFrame(master=self)
         self.mainframe.grid(row=0, column=1, sticky='nsew')
+        self.mainframe.grid_rowconfigure(0, weight=1)
+        self.mainframe.grid_columnconfigure(0, weight=1)
 
 
         # create some frames that go into the mainframe
         self.frame1 = ctk.CTkFrame(master=self.mainframe)
-        self.frame1.pack(pady=(1, 6), padx=(0, 12), fill='both', expand=True)
+        self.frame1.grid(row=0, column=0, pady=(1, 6), padx=(0, 12), sticky='nsew')
+        # self.frame1.pack(pady=(1, 6), padx=(0, 12), fill='both', expand=True)
+
         self.frame2 = ctk.CTkFrame(master=self.mainframe)
-        self.frame2.pack(pady=(6, 10), padx=12, anchor='s')
+        self.frame2.grid(row=1, column=0, pady=(6, 10), padx=12, sticky='s')
+        # self.frame2.pack(pady=(6, 10), padx=12, anchor='s')
 
 
 
@@ -94,13 +100,14 @@ class Converter(ctk.CTk):
 
 
         # configuring the rows and columns for the frames in the mainframe
-        self.frame1.grid_rowconfigure(5, weight=1)
-        self.frame1.grid_columnconfigure(2, weight=1)
+        self.frame1.grid_rowconfigure((0, 5), weight=1)
+        self.frame1.grid_columnconfigure((0, 3), weight=1)
         self.frame2.grid_columnconfigure((0, 1), weight=1)
 
 
         # create the widgets in frame1 of the mainframe
-        self.title = ctk.CTkLabel(master=self.frame1, text="🔁Rgb <-> Hex Converter", font=('Fira Code', 25))
+        #bug resolved: using self.title instead of self.main_title result in an error with CTkMessageBox
+        self.main_title = ctk.CTkLabel(master=self.frame1, text="🔁Rgb <-> Hex Converter", font=('Fira Code', 25))
         self.rgb_convert_button = ctk.CTkButton(master=self.frame1, text='Convert -> Hex', font=('Fira Code', 16), command=self.get_hex)
         self.rgb_entry = ctk.CTkEntry(master=self.frame1, width=180, placeholder_text="RGB ex. 25 125 225", font=('Fira Code', 15))
         self.solution_textbox = ctk.CTkTextbox(master=self.frame1, height=25, font=('Fira Code', 16))
@@ -109,12 +116,13 @@ class Converter(ctk.CTk):
 
 
         # grid the widgets onto the screen
-        self.title.grid              (row=0, column=0, pady=(15, 25),    sticky='nsew', columnspan=2)
-        self.rgb_entry.grid          (row=1, column=0, padx=40, pady=30, sticky='nsew')
-        self.rgb_convert_button.grid (row=1, column=1, padx=40, pady=30, sticky='nsew')
-        self.solution_textbox.grid   (row=2, column=0, padx=40, pady=20, sticky='nsew', columnspan=2)
-        self.hex_entry.grid          (row=3, column=0, padx=40, pady=30, sticky='nsew')
-        self.hex_convert_button.grid (row=3, column=1, padx=40, pady=30, sticky='nsew')
+
+        self.main_title.grid         (row=1, column=1, pady=(15, 25),    sticky='nsew', columnspan=2)
+        self.rgb_entry.grid          (row=2, column=1, padx=40, pady=30, sticky='nsew')
+        self.rgb_convert_button.grid (row=2, column=2, padx=40, pady=30, sticky='nsew')
+        self.solution_textbox.grid   (row=3, column=1, padx=40, pady=20, sticky='nsew', columnspan=2)
+        self.hex_entry.grid          (row=4, column=1, padx=40, pady=30, sticky='nsew')
+        self.hex_convert_button.grid (row=4, column=2, padx=40, pady=30, sticky='nsew')
 
 
 
@@ -134,18 +142,36 @@ class Converter(ctk.CTk):
     def get_hex(self):
         hex_str = ''
         rgb_vals = (self.rgb_entry.get()).split()
-        for value in rgb_vals:
-            hex_str += (self.hex_dict[math.floor(int(value)/16)] + self.hex_dict[int(value)%16])
-        self.solution_textbox.delete(0.0, 'end')
-        self.solution_textbox.insert('0.0', '  '+f"R({rgb_vals[0]}) G({rgb_vals[1]}) B({rgb_vals[2]}) -> #{hex_str}(hex)")
-    
+        try:
+            for value in rgb_vals[:3]:
+                hex_str += (self.hex_dict[math.floor(int(value)/16)] + self.hex_dict[int(value)%16])
+            self.solution_textbox.delete(0.0, 'end')
+            self.solution_textbox.insert('0.0', '  '+f"R({rgb_vals[0]}) G({rgb_vals[1]}) B({rgb_vals[2]}) -> #{hex_str}(hex)")
+        except:
+            # messagebox.showerror("Computation Error", "Please enter a RGB value in the specified format: `xxx xxx xxx` where xxx <= 255.")
+            CTkMessagebox(
+                title="Computation Error : Invalid RGB code", 
+                message="Please enter an RGB value in the specified format: `xxx xxx xxx` where xxx <= 255.", 
+                font=('Fira Code', 13), 
+                icon="cancel")
+
+
     def get_rgb(self):
         rgb_lst = []
         hex_val = self.hex_entry.get().upper().replace('#', '')
-        for value in [hex_val[x:x+2] for x in range(0, 6, 2)]:
-            rgb_lst.append((16*self.rgb_dict[value[0]]) + (self.rgb_dict[value[1]]))
-        self.solution_textbox.delete(0.0, 'end')
-        self.solution_textbox.insert('0.0', '  '+f"#{hex_val}(hex) -> R({rgb_lst[0]}) G({rgb_lst[1]}) B({rgb_lst[2]})")
+        try:
+            # could've used numpy for this splitting, but that would just make the app slower and more dependent 
+            for value in [hex_val[x:x+2] for x in range(0, 6, 2)]:
+                rgb_lst.append((16*self.rgb_dict[value[0]]) + (self.rgb_dict[value[1]]))
+            self.solution_textbox.delete(0.0, 'end')
+            self.solution_textbox.insert('0.0', '  '+f"#{hex_val[:6]}(hex) -> R({rgb_lst[0]}) G({rgb_lst[1]}) B({rgb_lst[2]})")
+        except:
+            # messagebox.showerror("Computation Error", "Please enter a six(6) character hex value in the specified format: `xxxxxx` or `#xxxxxx` where `x` is a value including 0-9, a-f, A-F.")
+            CTkMessagebox(
+                title="Computation Error : Invalid Hex code", 
+                message="Please enter a six(6) character hex value in the specified format: `xxxxxx` or `#xxxxxx` where `x` is a value including 0-9, a-f, A-F.",
+                font=('Fira Code', 13), 
+                icon="cancel")
 
     def set_appearance_mode(self, mode:str):
         ctk.set_appearance_mode(mode)
