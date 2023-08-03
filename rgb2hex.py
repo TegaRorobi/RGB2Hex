@@ -12,7 +12,11 @@ import customtkinter as ctk
 from PIL import Image
 from CTkMessagebox import CTkMessagebox
 
-
+'''
+TODO:   ADD A KIND OF DISPLAY THAT SHOWS THE COLORS AS THE 
+        PERSON CONVERTS THE COLOR CODES IN REALTIME. e.g a label 
+        that changes color according to the input colors
+'''
 
 # use a cli to allow setting the color scheme
 parser = argparse.ArgumentParser()
