@@ -15,18 +15,32 @@ CLI for setting the mode (light or dark) and the accent colour.
 - math
 
 ## Getting Started
-### Step 1
+
+### Running the application (assuming you have a python installation)
+#### Step 1
 Clone the repository into a virtual environment or download the zip
 ```
 git clone https://github.com/TegaRorobi/RGB2Hex.git
 ```
-### Step 2
+#### Step 2
 Install the requirements
 ```
 python -m pip install -r requirements.txt
 ```
-### Step 3
+#### Step 3
 Run the application
 ```
 python rgb2hex.py --colors dark green
 ```
+
+### Running the application using the provided executable
+#### Step 1
+Clone the repository or download the zip
+```
+git clone https://github.com/TegaRorobi/RGB2Hex.git
+```
+#### Step 2
+Unzip the _dist_ folder
+
+#### Step 3
+Simply Run the executable in the dist folder
