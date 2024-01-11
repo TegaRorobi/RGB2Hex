@@ -13,7 +13,6 @@ CLI for setting the mode (light or dark) and the accent colour.
 - sys, math, argparse
 
 ## Getting Started
-
 ### Running the application (assuming you have a python installation)
 
 #### Step 1
@@ -27,6 +26,7 @@ Clone the repository into a virtual environment or download the zip
 ```
 git clone https://github.com/TegaRorobi/RGB2Hex.git
 ```
+
 #### Step 3
 Install the requirements
 ```
@@ -41,14 +41,21 @@ python rgb2hex.py --colors dark green
 
 <br>
 
-### Running the application using the provided executable
+### Running the application via the executable (you don't need a python installation here)
 #### Step 1
 Clone the repository or download the zip
 ```
 git clone https://github.com/TegaRorobi/RGB2Hex.git
 ```
+
 #### Step 2
 Unzip the _dist_ folder
 
 #### Step 3
 Simply Run the executable in the _dist_ folder
+
+<br>
+
+Note:
+- You may have to install the [Fira Code](https://fonts.google.com/specimen/Fira+Code) font on your machine
+- The executable works on only windows machines (support for other operating systems may be incorporated in future updates)
