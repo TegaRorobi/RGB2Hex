@@ -8,11 +8,15 @@ last_modidified:
 '''
 
 # imports
-import sys, math, argparse
+import math, argparse
 import customtkinter as ctk
 from PIL import Image
 from CTkMessagebox import CTkMessagebox
+from pathlib import Path
 
+PARENT_DIR = Path(__file__).resolve().parent
+
+__all__ = ('main',)
 '''
 TODO:   ADD A KIND OF DISPLAY THAT SHOWS THE COLORS AS THE 
         PERSON CONVERTS THE COLOR CODES IN REALTIME. e.g a label 
@@ -64,8 +68,8 @@ class Converter(ctk.CTk):
 
 
         # create some widgets that go into the sidebar
-        self.logo_img= ctk.CTkImage(Image.open('assets/ctk_logo.png'), size=(20, 20))
-        self.logo_label = ctk.CTkLabel(master=self.sidebar, text='  Deciphrexx', font=('', 15), image=self.logo_img, compound='left')
+        self.logo_img= ctk.CTkImage(Image.open(PARENT_DIR/'assets/ctk_logo.png'), size=(20, 20))
+        self.logo_label = ctk.CTkLabel(master=self.sidebar, text='  RGB2Hex', font=('', 15), image=self.logo_img, compound='left')
         self.logo_label.grid(row=0, column=0, sticky='nsew')
 
         self.scaling_label=ctk.CTkLabel(master=self.sidebar,text='Widget Scaling:', font=('', 15))
@@ -184,8 +188,10 @@ class Converter(ctk.CTk):
     def set_scaling(self, scale):
         float_scale = int(scale.replace('%', '')) / 100
         ctk.set_widget_scaling(float_scale)
-  
 
-if __name__ == '__main__':
+def main():
     app = Converter()
     app.mainloop()
+
+if __name__ == '__main__':
+    main()
