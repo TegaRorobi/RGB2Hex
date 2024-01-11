@@ -69,7 +69,7 @@ class Converter(ctk.CTk):
 
         # create some widgets that go into the sidebar
         self.logo_img= ctk.CTkImage(Image.open(PARENT_DIR/'assets/ctk_logo.png'), size=(20, 20))
-        self.logo_label = ctk.CTkLabel(master=self.sidebar, text='  Deciphrexx', font=('', 15), image=self.logo_img, compound='left')
+        self.logo_label = ctk.CTkLabel(master=self.sidebar, text='  RGB2Hex', font=('', 15), image=self.logo_img, compound='left')
         self.logo_label.grid(row=0, column=0, sticky='nsew')
 
         self.scaling_label=ctk.CTkLabel(master=self.sidebar,text='Widget Scaling:', font=('', 15))
