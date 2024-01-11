@@ -10,28 +10,36 @@ CLI for setting the mode (light or dark) and the accent colour.
 - Customtkinter
 - CTkMessagebox
 - Pillow
-- sys
-- argparse
-- math
+- sys, math, argparse
 
 ## Getting Started
 
 ### Running the application (assuming you have a python installation)
+
 #### Step 1
+Open your favourite terminal and navigate to a suitable directory.  
+```bash
+cd path/to/suitable/directory/
+```
+
+#### Step 2
 Clone the repository into a virtual environment or download the zip
 ```
 git clone https://github.com/TegaRorobi/RGB2Hex.git
 ```
-#### Step 2
+#### Step 3
 Install the requirements
 ```
 python -m pip install -r requirements.txt
 ```
-#### Step 3
-Run the application
+
+#### Step 4
+Run the application (with a dark theme and a green accent color)
 ```
 python rgb2hex.py --colors dark green
 ```
+
+<br>
 
 ### Running the application using the provided executable
 #### Step 1
@@ -43,4 +51,4 @@ git clone https://github.com/TegaRorobi/RGB2Hex.git
 Unzip the _dist_ folder
 
 #### Step 3
-Simply Run the executable in the dist folder
+Simply Run the executable in the _dist_ folder
