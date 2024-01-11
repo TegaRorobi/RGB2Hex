@@ -27,8 +27,8 @@ TODO:   ADD A KIND OF DISPLAY THAT SHOWS THE COLORS AS THE
 parser = argparse.ArgumentParser()
 parser.add_argument('--colors', nargs=2)
 args = parser.parse_args()
-mode =  args.colors[0] if args.colors else None
-color = args.colors[1] if args.colors else None
+mode =  args.colors[0] if args.colors else None # dark, light
+color = args.colors[1] if args.colors else None # green, blue
 
 
 class Converter(ctk.CTk):
