@@ -1,9 +1,10 @@
 '''
 Developer : Tega Andrew Rorobi
-email   : rorobitega@gmail.com
-twitter : @Tega_Rorobi
-github  : https://github.com/TegaRorobi
-last_modidified: 
+Email   : rorobitega@gmail.com
+Github  : https://github.com/TegaRorobi
+Linkedin: https://linkedin.com/in/TegaRorobi
+Twitter : @TegaRorobi
+last_modidified:
 '''
 
 # imports
